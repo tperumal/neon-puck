@@ -9,6 +9,16 @@
     return document.getElementById(id);
   }
 
+  function updateCanvasInteractivity() {
+    var anyActive = Object.keys(screens).some(function (k) {
+      return screens[k].classList.contains('active');
+    });
+    var canvas = document.getElementById('gameCanvas');
+    if (canvas) {
+      canvas.classList.toggle('inactive', anyActive);
+    }
+  }
+
   function showScreen(name) {
     Object.keys(screens).forEach(function (k) {
       screens[k].classList.remove('active');
@@ -16,6 +26,7 @@
     if (screens[name]) {
       screens[name].classList.add('active');
     }
+    updateCanvasInteractivity();
   }
 
   function showOverlay(name) {
@@ -34,6 +45,7 @@
     Object.keys(screens).forEach(function (k) {
       screens[k].classList.remove('active');
     });
+    updateCanvasInteractivity();
   }
 
   window.UI = {
