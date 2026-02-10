@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Neon Puck</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- Main Menu -->
+  <div id="menu-screen" class="screen active">
+    <div class="menu-content">
+      <h1 class="neon-title">NEON PUCK</h1>
+      <p class="subtitle">Air Hockey</p>
+      <button class="btn btn-play" id="btn-play">PLAY</button>
+    </div>
+  </div>
+
+  <!-- Mode Select -->
+  <div id="mode-screen" class="screen">
+    <div class="menu-content">
+      <h2 class="screen-title">SELECT MODE</h2>
+      <button class="btn btn-local" id="btn-local">LOCAL 2-PLAYER</button>
+      <button class="btn btn-create" id="btn-create">CREATE ROOM</button>
+      <button class="btn btn-join" id="btn-join">JOIN ROOM</button>
+      <button class="btn btn-back" id="btn-back-mode">BACK</button>
+    </div>
+  </div>
+
+  <!-- Create Room / Waiting -->
+  <div id="create-screen" class="screen">
+    <div class="menu-content">
+      <h2 class="screen-title">YOUR ROOM CODE</h2>
+      <div id="room-code" class="room-code">----</div>
+      <p class="hint">Share this code with your opponent</p>
+      <p id="create-status" class="status">Waiting for opponent...</p>
+      <button class="btn btn-back" id="btn-back-create">CANCEL</button>
+    </div>
+  </div>
+
+  <!-- Join Room -->
+  <div id="join-screen" class="screen">
+    <div class="menu-content">
+      <h2 class="screen-title">ENTER ROOM CODE</h2>
+      <div class="code-input-wrap">
+        <input type="text" id="code-input" class="code-input" maxlength="4" placeholder="----" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false">
+      </div>
+      <p id="join-error" class="error"></p>
+      <button class="btn btn-join-go" id="btn-join-go">JOIN</button>
+      <button class="btn btn-back" id="btn-back-join">BACK</button>
+    </div>
+  </div>
+
+  <!-- Countdown Overlay -->
+  <div id="countdown-overlay" class="overlay">
+    <div id="countdown-text" class="countdown-text">3</div>
+  </div>
+
+  <!-- Goal Overlay -->
+  <div id="goal-overlay" class="overlay">
+    <div id="goal-text" class="goal-text">GOAL!</div>
+  </div>
+
+  <!-- Game Over -->
+  <div id="gameover-screen" class="screen">
+    <div class="menu-content">
+      <h2 id="winner-text" class="winner-text">PLAYER 1 WINS!</h2>
+      <div id="final-score" class="final-score">7 - 3</div>
+      <button class="btn btn-play" id="btn-rematch">REMATCH</button>
+      <button class="btn btn-back" id="btn-back-gameover">MAIN MENU</button>
+    </div>
+  </div>
+
+  <!-- Sound toggle -->
+  <button id="btn-sound" class="sound-btn" aria-label="Toggle sound">&#x1f50a;</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/physics.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/network.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
