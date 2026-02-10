@@ -237,12 +237,20 @@
     return null;
   }
 
-  function resetPuck(state) {
+  function servePuck(puck, direction) {
+    // Random angle between -45 and +45 degrees from the serve direction
+    var angle = (Math.random() - 0.5) * Math.PI * 0.5;
+    var speed = 4 + Math.random() * 2;
+    var dir = direction || (Math.random() < 0.5 ? 1 : -1);
+    puck.vx = Math.cos(angle) * speed * dir;
+    puck.vy = Math.sin(angle) * speed;
+  }
+
+  function resetPuck(state, direction) {
     var puck = state.puck;
     puck.x = WIDTH / 2;
     puck.y = HEIGHT / 2;
-    puck.vx = 0;
-    puck.vy = 0;
+    servePuck(puck, direction);
   }
 
   function resetFull(state) {

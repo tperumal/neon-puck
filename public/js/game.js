@@ -324,8 +324,9 @@
       screenShake = 10;
       goalFlashAlpha = 0.4;
       UI.showGoal();
+      var serveDir = state.lastGoalBy === 1 ? -1 : 1; // serve toward the scored-on player
       setTimeout(function () {
-        Physics.resetPuck(state);
+        Physics.resetPuck(state, serveDir);
         trailPoints = [];
         startCountdown(function () {
           gamePhase = 'playing';
@@ -345,10 +346,14 @@
   }
 
   function renderLoop() {
-    if (mode === 'local' && gamePhase === 'playing') {
-      localGameLoop();
+    try {
+      if (mode === 'local' && gamePhase === 'playing') {
+        localGameLoop();
+      }
+      render();
+    } catch (e) {
+      console.error('Render error:', e);
     }
-    render();
     requestAnimationFrame(renderLoop);
   }
 

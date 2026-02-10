@@ -111,9 +111,10 @@ function startPhysicsLoop(room) {
         }
       }
 
-      // Reset puck and restart after delay
+      // Reset puck and restart after delay (serve toward scored-on player)
+      const serveDir = room.state.lastGoalBy === 1 ? -1 : 1;
       setTimeout(() => {
-        Physics.resetPuck(room.state);
+        Physics.resetPuck(room.state, serveDir);
         startCountdown(room);
       }, 1500);
     }
