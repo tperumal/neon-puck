@@ -21,9 +21,15 @@
     onRematch: null
   };
 
+  // When running inside Capacitor, connect to the Render server explicitly
+  // instead of same-origin (which would be capacitor://localhost).
+  var SERVER_URL = (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())
+    ? 'https://neon-puck.onrender.com'
+    : undefined; // same-origin when served from Express
+
   function connect() {
     if (socket) return;
-    socket = io({ reconnection: true, reconnectionDelay: 500, reconnectionAttempts: 10 });
+    socket = io(SERVER_URL, { reconnection: true, reconnectionDelay: 500, reconnectionAttempts: 10 });
 
     socket.on('connect', function () {
       connected = true;

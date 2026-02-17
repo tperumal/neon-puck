@@ -1,1 +1,7 @@
 node_modules/
+
+# iOS build artifacts
+ios/App/App.xcodeproj/project.xcworkspace/
+ios/App/App.xcodeproj/xcuserdata/
+ios/App/build/
+ios/DerivedData/

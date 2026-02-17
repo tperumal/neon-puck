@@ -315,11 +315,12 @@
     if (gamePhase !== 'playing' || mode !== 'local') return;
 
     var event = Physics.step(state);
-    if (event === 'wallHit') Sound.wallHit();
-    if (event === 'paddleHit') Sound.paddleHit();
+    if (event === 'wallHit') { Sound.wallHit(); Haptics.light(); }
+    if (event === 'paddleHit') { Sound.paddleHit(); Haptics.medium(); }
     if (event === 'goal') {
       gamePhase = 'goal';
       Sound.goal();
+      Haptics.heavy();
       spawnGoalParticles(state.lastGoalBy);
       screenShake = 10;
       goalFlashAlpha = 0.4;
@@ -336,6 +337,7 @@
     if (event === 'win') {
       gamePhase = 'gameover';
       Sound.win();
+      Haptics.notification('SUCCESS');
       spawnWinParticles();
       screenShake = 15;
       goalFlashAlpha = 0.5;
@@ -474,6 +476,7 @@
       gamePhase = 'goal';
       state.scores = data.scores;
       Sound.goal();
+      Haptics.heavy();
       spawnGoalParticles(data.scorer);
       screenShake = 10;
       goalFlashAlpha = 0.4;
@@ -485,6 +488,7 @@
       gamePhase = 'gameover';
       state.scores = data.scores;
       Sound.win();
+      Haptics.notification('SUCCESS');
       spawnWinParticles();
       screenShake = 15;
       goalFlashAlpha = 0.5;
@@ -527,11 +531,24 @@
     // join is triggered by the join button handler
   }
 
+  // --- Capacitor Lifecycle ---
+  function initCapacitor() {
+    Haptics.init();
+
+    // Resume AudioContext when app returns from background
+    if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+      document.addEventListener('resume', function () {
+        Sound.init(); // re-calls ensureContext() which resumes suspended AudioContext
+      });
+    }
+  }
+
   // --- Init ---
   function init() {
     initCanvas();
     UI.init();
     Input.init(canvas, handlePaddleMove);
+    initCapacitor();
 
     // Sound button
     var soundBtn = document.getElementById('btn-sound');

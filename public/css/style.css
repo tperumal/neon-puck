@@ -45,6 +45,11 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding:
+    env(safe-area-inset-top, 0px)
+    env(safe-area-inset-right, 0px)
+    env(safe-area-inset-bottom, 0px)
+    env(safe-area-inset-left, 0px);
   background: rgba(26, 26, 46, 0.95);
   z-index: 10;
   opacity: 0;
@@ -288,8 +293,8 @@ html, body {
 /* --- Sound Button --- */
 .sound-btn {
   position: fixed;
-  top: 12px;
-  right: 12px;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  right: calc(12px + env(safe-area-inset-right, 0px));
   z-index: 30;
   width: 44px;
   height: 44px;
