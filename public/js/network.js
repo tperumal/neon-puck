@@ -21,15 +21,25 @@
     onRematch: null
   };
 
-  // When running inside Capacitor, connect to the Render server explicitly
-  // instead of same-origin (which would be capacitor://localhost).
-  var SERVER_URL = (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())
-    ? 'https://neon-puck.onrender.com'
-    : undefined; // same-origin when served from Express
+  function getServerUrl() {
+    // When running inside Capacitor, connect to the Render server explicitly
+    // instead of same-origin (which would be capacitor://localhost).
+    if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+      return 'https://neon-puck.onrender.com';
+    }
+    return undefined; // same-origin when served from Express
+  }
 
   function connect() {
     if (socket) return;
-    socket = io(SERVER_URL, { reconnection: true, reconnectionDelay: 500, reconnectionAttempts: 10 });
+    var url = getServerUrl();
+    var opts = { reconnection: true, reconnectionDelay: 500, reconnectionAttempts: 10 };
+    // In Capacitor's WKWebView, XHR polling from capacitor:// origin is
+    // blocked by CORS. Force WebSocket transport to skip polling handshake.
+    if (url) {
+      opts.transports = ['websocket'];
+    }
+    socket = io(url, opts);
 
     socket.on('connect', function () {
       connected = true;
