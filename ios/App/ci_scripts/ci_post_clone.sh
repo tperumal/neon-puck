@@ -1,7 +1,10 @@
 #!/bin/sh
 set -e
 
-# Navigate to the project root (3 levels up from ci_scripts/)
+# Install Node.js via Homebrew (not available by default in Xcode Cloud)
+brew install node
+
+# Navigate to the project root
 cd "$CI_PRIMARY_REPOSITORY_PATH"
 
 # Install Node.js dependencies so Capacitor SPM local packages resolve
