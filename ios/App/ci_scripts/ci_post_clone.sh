@@ -14,3 +14,6 @@ echo "npm: $(npm --version)"
 
 cd "$CI_PRIMARY_REPOSITORY_PATH"
 npm install
+
+# Copy web assets and config into the iOS project
+npx cap sync ios
