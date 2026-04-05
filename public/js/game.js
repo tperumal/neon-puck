@@ -21,13 +21,13 @@
     return 'rgba(' + r + ',' + g + ',' + b + ',1)';
   }
 
-  // Colors
-  var P1_COLOR = '#ff6b6b';
-  var P2_COLOR = '#4ecdc4';
+  // Colors — brutalist palette
+  var P1_COLOR = '#ff0033';
+  var P2_COLOR = '#0038FF';
   var PUCK_COLOR = '#ffffff';
-  var BG_COLOR = '#1a1a2e';
-  var TABLE_COLOR = '#16213e';
-  var LINE_COLOR = '#0f3460';
+  var BG_COLOR = '#0a0a0a';
+  var TABLE_COLOR = '#111111';
+  var LINE_COLOR = '#333333';
 
   // --- Canvas Setup ---
   function initCanvas() {
@@ -77,20 +77,18 @@
     ctx.fillStyle = TABLE_COLOR;
     ctx.fillRect(0, 0, W, H);
 
-    // Border
+    // Border — hard 2px lines
     ctx.strokeStyle = LINE_COLOR;
-    ctx.lineWidth = 3;
-    ctx.strokeRect(2, 2, W - 4, H - 4);
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1, 1, W - 2, H - 2);
 
-    // Center line
+    // Center line — solid
     ctx.beginPath();
-    ctx.setLineDash([8, 8]);
     ctx.moveTo(W / 2, 0);
     ctx.lineTo(W / 2, H);
     ctx.strokeStyle = LINE_COLOR;
     ctx.lineWidth = 2;
     ctx.stroke();
-    ctx.setLineDash([]);
 
     // Center circle
     ctx.beginPath();
@@ -148,24 +146,17 @@
       }
     }
 
-    // Glow
-    ctx.save();
-    ctx.shadowColor = PUCK_COLOR;
-    ctx.shadowBlur = 15;
-
-    // Puck body
+    // Puck body — flat, no glow
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fillStyle = PUCK_COLOR;
     ctx.fill();
 
-    // Inner highlight
+    // Hard inner circle
     ctx.beginPath();
-    ctx.arc(x - r * 0.2, y - r * 0.2, r * 0.4, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.arc(x, y, r * 0.4, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
     ctx.fill();
-
-    ctx.restore();
   }
 
   function drawPaddle(paddle, color) {
@@ -173,11 +164,7 @@
     var y = sy(paddle.y);
     var r = sx(paddle.radius);
 
-    ctx.save();
-    ctx.shadowColor = color;
-    ctx.shadowBlur = 20;
-
-    // Outer ring
+    // Outer ring — flat, no glow
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.strokeStyle = color;
@@ -187,7 +174,7 @@
     // Fill
     ctx.beginPath();
     ctx.arc(x, y, r - 2, 0, Math.PI * 2);
-    ctx.fillStyle = color + '88';
+    ctx.fillStyle = color + '66';
     ctx.fill();
 
     // Inner circle
@@ -195,14 +182,12 @@
     ctx.arc(x, y, r * 0.4, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
-
-    ctx.restore();
   }
 
   function drawScores() {
     if (!state) return;
     ctx.save();
-    ctx.font = 'bold ' + Math.round(sx(40)) + 'px "Segoe UI", Arial, sans-serif';
+    ctx.font = '900 ' + Math.round(sx(40)) + 'px "Inter", "Segoe UI", Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
 
@@ -258,7 +243,7 @@
     for (var i = 0; i < 80; i++) {
       var angle = Math.random() * Math.PI * 2;
       var speed = 2 + Math.random() * 6;
-      var colors = [P1_COLOR, P2_COLOR, '#ffd93d', PUCK_COLOR];
+      var colors = [P1_COLOR, P2_COLOR, '#ffffff', '#555555'];
       var c = colors[Math.floor(Math.random() * colors.length)];
       particles.push({
         x: W / 2 + (Math.random() - 0.5) * W * 0.5,

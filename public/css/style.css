@@ -3,20 +3,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border-radius: 0 !important;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
 
 html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #1a1a2e;
-  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: #0a0a0a;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #fff;
   touch-action: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* --- Canvas --- */
@@ -50,11 +54,11 @@ html, body {
     env(safe-area-inset-right, 0px)
     env(safe-area-inset-bottom, 0px)
     env(safe-area-inset-left, 0px);
-  background: rgba(26, 26, 46, 0.95);
+  background: rgba(10, 10, 10, 0.96);
   z-index: 10;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.15s ease;
 }
 
 .screen.active {
@@ -74,7 +78,7 @@ html, body {
   z-index: 20;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.1s ease;
 }
 
 .overlay.active {
@@ -90,123 +94,138 @@ html, body {
 }
 
 .neon-title {
-  font-size: 3.5rem;
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
   font-weight: 900;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: #fff;
-  text-shadow:
-    0 0 10px #4ecdc4,
-    0 0 20px #4ecdc4,
-    0 0 40px #4ecdc4,
-    0 0 80px #4ecdc488;
+  text-transform: uppercase;
   margin-bottom: 0.1em;
+  line-height: 1.1;
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  color: #888;
+  font-size: 0.75rem;
+  font-family: 'Space Mono', 'Courier New', monospace;
+  color: #999;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  margin-bottom: 2em;
+  margin-bottom: 2.5em;
 }
 
 .screen-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin-bottom: 1.5em;
-  color: #ccc;
+  color: #fff;
+  line-height: 1.1;
 }
 
 /* --- Buttons --- */
 .btn {
   display: block;
   width: 100%;
-  padding: 16px 24px;
-  margin-bottom: 14px;
-  font-size: 1.15rem;
+  padding: 14px 24px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
   border: 2px solid;
-  border-radius: 12px;
   background: transparent;
   cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: inherit;
+  transition: all 0.1s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .btn:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
 .btn-play, .btn-join-go {
-  color: #4ecdc4;
-  border-color: #4ecdc4;
+  color: #000;
+  border-color: #fff;
+  background: #fff;
 }
 .btn-play:active, .btn-join-go:active {
-  background: #4ecdc422;
+  color: #fff;
+  background: #0038FF;
+  border-color: #0038FF;
 }
 
 .btn-local {
-  color: #ff6b6b;
-  border-color: #ff6b6b;
+  color: #fff;
+  border-color: #fff;
 }
 .btn-local:active {
-  background: #ff6b6b22;
+  color: #000;
+  background: #fff;
 }
 
 .btn-create {
-  color: #4ecdc4;
-  border-color: #4ecdc4;
+  color: #fff;
+  border-color: #fff;
 }
 .btn-create:active {
-  background: #4ecdc422;
+  color: #000;
+  background: #fff;
 }
 
 .btn-join {
-  color: #ffd93d;
-  border-color: #ffd93d;
+  color: #fff;
+  border-color: #fff;
 }
 .btn-join:active {
-  background: #ffd93d22;
+  color: #000;
+  background: #fff;
 }
 
 .btn-back {
-  color: #888;
-  border-color: #555;
+  color: #555;
+  border-color: #333;
   margin-top: 10px;
 }
 .btn-back:active {
-  background: #ffffff11;
+  color: #fff;
+  border-color: #fff;
 }
 
 /* --- Room Code --- */
 .room-code {
-  font-size: 4rem;
-  font-weight: 900;
+  font-size: 3.5rem;
+  font-weight: 700;
   letter-spacing: 0.4em;
-  color: #4ecdc4;
-  text-shadow: 0 0 20px #4ecdc488;
+  color: #fff;
   margin-bottom: 0.3em;
-  font-family: 'Courier New', monospace;
+  font-family: 'Space Mono', 'Courier New', monospace;
 }
 
 .hint {
-  color: #888;
-  font-size: 0.95rem;
+  color: #555;
+  font-size: 0.75rem;
+  font-family: 'Space Mono', 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin-bottom: 1em;
 }
 
 .status {
-  color: #ffd93d;
-  font-size: 1rem;
+  color: #fff;
+  font-size: 0.8rem;
+  font-family: 'Space Mono', 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin-bottom: 1.5em;
   min-height: 1.5em;
 }
 
 .error {
-  color: #ff6b6b;
-  font-size: 0.95rem;
+  color: #ff0033;
+  font-size: 0.8rem;
+  font-family: 'Space Mono', 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin-bottom: 0.5em;
   min-height: 1.3em;
 }
@@ -217,23 +236,28 @@ html, body {
 }
 
 .code-input {
-  width: 200px;
-  font-size: 2.5rem;
-  font-weight: 900;
+  width: 220px;
+  font-size: 2.2rem;
+  font-weight: 700;
   letter-spacing: 0.4em;
   text-align: center;
-  color: #ffd93d;
+  color: #fff;
   background: transparent;
   border: none;
-  border-bottom: 3px solid #ffd93d55;
+  border-bottom: 2px solid #333;
   outline: none;
-  font-family: 'Courier New', monospace;
+  font-family: 'Space Mono', 'Courier New', monospace;
   text-transform: uppercase;
-  caret-color: #ffd93d;
+  caret-color: #fff;
+  padding-bottom: 8px;
 }
 
 .code-input:focus {
-  border-bottom-color: #ffd93d;
+  border-bottom-color: #fff;
+}
+
+.code-input::placeholder {
+  color: #333;
 }
 
 /* --- Countdown --- */
@@ -241,7 +265,7 @@ html, body {
   font-size: 8rem;
   font-weight: 900;
   color: #fff;
-  text-shadow: 0 0 30px #4ecdc4, 0 0 60px #4ecdc488;
+  font-family: 'Inter', sans-serif;
   animation: countPulse 0.5s ease-out;
 }
 
@@ -255,39 +279,43 @@ html, body {
 .goal-text {
   font-size: 5rem;
   font-weight: 900;
-  color: #ffd93d;
-  text-shadow: 0 0 30px #ffd93d, 0 0 60px #ffd93d88;
-  animation: goalPulse 0.6s ease-out;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: goalPulse 0.5s ease-out;
 }
 
 @keyframes goalPulse {
   0% { transform: scale(0.5); opacity: 0; }
-  40% { transform: scale(1.2); opacity: 1; }
+  40% { transform: scale(1.15); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
 }
 
 /* --- Game Over --- */
 .winner-text {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin-bottom: 0.3em;
-  text-shadow: 0 0 20px currentColor;
+  color: #fff;
 }
 
 .winner-text.p1 {
-  color: #ff6b6b;
+  color: #ff0033;
 }
 
 .winner-text.p2 {
-  color: #4ecdc4;
+  color: #0038FF;
 }
 
 .final-score {
   font-size: 3rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #fff;
   letter-spacing: 0.2em;
   margin-bottom: 1.5em;
+  font-family: 'Space Mono', 'Courier New', monospace;
 }
 
 /* --- Sound Button --- */
@@ -296,35 +324,41 @@ html, body {
   top: calc(12px + env(safe-area-inset-top, 0px));
   right: calc(12px + env(safe-area-inset-right, 0px));
   z-index: 30;
-  width: 44px;
-  height: 44px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid #333;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+  transition: all 0.1s ease;
+}
+
+.sound-btn:active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
 }
 
 .sound-btn.muted {
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 /* --- Responsive --- */
 @media (max-height: 500px) {
-  .neon-title { font-size: 2.5rem; }
-  .btn { padding: 12px 20px; font-size: 1rem; margin-bottom: 10px; }
-  .room-code { font-size: 3rem; }
+  .neon-title { font-size: 2.2rem; }
+  .btn { padding: 10px 20px; font-size: 0.8rem; margin-bottom: 8px; }
+  .room-code { font-size: 2.5rem; }
   .countdown-text { font-size: 5rem; }
   .goal-text { font-size: 3.5rem; }
   .menu-content { max-width: 350px; }
 }
 
 @media (max-width: 400px) {
-  .neon-title { font-size: 2.2rem; }
-  .room-code { font-size: 2.8rem; }
+  .neon-title { font-size: 2rem; }
+  .room-code { font-size: 2.2rem; }
 }

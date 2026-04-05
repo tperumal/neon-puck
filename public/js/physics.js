@@ -60,13 +60,8 @@
     var minX = paddle.radius;
     var maxX = WIDTH - paddle.radius;
 
-    if (paddle.player === 1) {
-      // Left half only
-      paddle.x = Math.max(minX, Math.min(WIDTH / 2 - paddle.radius, paddle.x));
-    } else {
-      // Right half only
-      paddle.x = Math.max(WIDTH / 2 + paddle.radius, Math.min(maxX, paddle.x));
-    }
+    // Full table — no half-court restriction
+    paddle.x = Math.max(minX, Math.min(maxX, paddle.x));
   }
 
   function circleCollision(a, b) {

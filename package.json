@@ -17,6 +17,7 @@
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
+    "canvas": "^3.2.3",
     "typescript": "^5.9.3"
   }
 }
