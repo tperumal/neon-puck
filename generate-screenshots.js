@@ -5,7 +5,7 @@ const fs = require('fs');
 
 // Device sizes (landscape)
 const DEVICES = {
-  iphone_67: { w: 2868, h: 1320, scale: 3, statusBar: 60, homeBar: 30 },
+  iphone_67: { w: 2796, h: 1290, scale: 3, statusBar: 60, homeBar: 30 },
   ipad_13:   { w: 2752, h: 2064, scale: 2, statusBar: 50, homeBar: 30 },
 };
 
